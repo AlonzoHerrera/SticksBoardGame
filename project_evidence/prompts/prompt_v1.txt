@@ -1,0 +1,24 @@
+Prompt v1 — Initial Random Easy AI Prompt
+
+Context:
+I am extending my existing Flutter Game B project by adding computer-controlled opponents. The game engine already handles the board, players, teams, stick throws, legal movement, captures, stacking, special X-stick captures, and win detection.
+
+Request:
+Create a Random Easy AI strategy for the Flutter Game B project.
+
+The AI should randomly choose a move for the current player.
+
+Requirements:
+- Create a GameMove class that represents a normal move.
+- Create an AiStrategy abstract class.
+- Create a RandomEasyStrategy class.
+- The Random Easy AI should choose one move randomly.
+- The AI should work with the current Game engine.
+- Use Dart.
+- Keep the AI code separate from the Flutter user interface.
+
+Output:
+Provide the complete Dart code for:
+- game_move.dart
+- ai_strategy.dart
+- random_easy_strategy.dart

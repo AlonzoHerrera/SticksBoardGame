@@ -1,0 +1,92 @@
+@startuml
+title Game B AI Architecture (Checkpoint 1)
+
+skinparam classAttributeIconSize 0
+
+package "Game Engine" {
+
+class GameEngine {
+    +throwSticks()
+    +movePiece()
+    +legalMoves()
+    +legalSpecialTargets()
+}
+
+class Game {
+    +currentPlayer
+    +currentTeam
+    +winningTeam
+}
+
+class Board
+
+class Team {
+    +teamId
+    +name
+}
+
+class Player {
+    +playerId
+    +teamId
+}
+
+class Piece {
+    +pieceId
+    +ownerId
+    +teamId
+}
+
+GameEngine <|.. Game
+Game --> Board
+Game --> Team
+Game --> Player
+Player --> Piece
+Team --> Piece
+
+}
+
+package "Artificial Intelligence" {
+
+class GameMove {
+    +type
+    +movingPieceId
+    +destinationProgress
+    +targetPieceId
+}
+
+abstract class AiStrategy {
+    +name
+    +difficulty
+    +chooseMove()
+    +chooseValidatedMove()
+}
+
+class RandomEasyStrategy
+
+AiStrategy <|-- RandomEasyStrategy
+RandomEasyStrategy --> GameMove
+
+}
+
+Game --> GameMove : creates legal moves
+AiStrategy --> GameMove : selects one move
+Game --> AiStrategy : provides legal moves
+Game --> GameMove : validates and applies
+
+note right of AiStrategy
+AI never changes
+the game state.
+It only selects
+one legal move.
+end note
+
+note bottom of Game
+Game owns:
+- movement
+- captures
+- stacking
+- turn order
+- win detection
+end note
+
+@enduml

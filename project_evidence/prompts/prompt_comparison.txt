@@ -1,0 +1,31 @@
+Prompt Comparison — Random Easy AI
+
+Prompt v1 was a basic request to create a Random Easy AI strategy. It identified the main classes that were needed, including GameMove, AiStrategy, and RandomEasyStrategy. It also stated that the AI should randomly choose a move and remain separate from the Flutter user interface.
+
+However, Prompt v1 left several important design details unclear. It did not clearly state who creates the legal moves, whether the AI could directly modify the game, how X-stick captures should be represented, what should happen when no legal moves exist, or how the strategy should be tested.
+
+Prompt v2 improved the request by clearly separating the responsibilities of the AI and the game engine. The game engine generates legal moves, validates rules, applies moves, updates the board, handles captures, changes turns, and detects the winner. The AI only selects one move from the legal move list.
+
+Prompt v2 also added support for both normal moves and X-stick special captures. It required move validation, equality, hashCode, a stable move ID, seeded randomness for testing, and protection against empty move lists. It also required tests to confirm that the strategy only returns legal moves and does not modify the supplied move list or game state.
+
+Main improvements from Prompt v1 to Prompt v2:
+
+1. Clear ownership of game rules
+Prompt v1 only said the AI should choose a move. Prompt v2 clearly states that the game engine owns all rule validation and state changes.
+
+2. Complete GameMove design
+Prompt v1 only mentioned normal moves. Prompt v2 requires support for both normal movement and X-stick special captures.
+
+3. Safer AI behavior
+Prompt v2 prevents the AI from creating its own moves or directly changing players, pieces, teams, the board, or the game state.
+
+4. Better error handling
+Prompt v2 requires the strategy to reject an empty legal move list and verify that the selected move came from the provided legal moves.
+
+5. Better testability
+Prompt v2 requires Random to be injected so a fixed seed can be used in automated tests.
+
+6. Better support for future LLM integration
+Prompt v2 requires stable move IDs that can later be sent to an LLM and checked against the legal move list.
+
+The refined prompt produced a design that is easier to test, safer to use, and easier to extend with Greedy, Heuristic, and LLM strategies.

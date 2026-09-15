@@ -1,0 +1,83 @@
+Prompt v2 — Refined Random Easy AI Prompt
+
+Context:
+I am extending an existing Flutter Game B project with computer-controlled opponents.
+
+The game already includes:
+- exactly two teams
+- two to four players
+- four pieces per team
+- teammate stacking
+- opponent captures
+- special X-stick captures
+- legal move generation
+- route choices
+- extra turns
+- game-over detection
+- team win detection
+
+The AI architecture must keep decision-making separate from the game engine. The game engine is responsible for generating legal moves, validating rules, applying moves, changing turns, updating the board, handling captures, and detecting the winner.
+
+Request:
+Create the first AI difficulty named Random Easy.
+
+The Random Easy AI must select exactly one move at random from a list of legal GameMove objects supplied by the game engine.
+
+Required design:
+
+1. GameMove class
+- Represent both normal movement and special X-stick captures.
+- A normal move must include:
+  - moving piece ID
+  - stick move value
+  - destination progress
+- A special capture must include:
+  - moving piece ID
+  - target piece ID
+- Include a move type that distinguishes normal moves from special captures.
+- Include validation.
+- Include equality and hashCode so moves can be compared in tests.
+- Include a stable move ID that can later be used by an LLM opponent.
+
+2. AiStrategy abstract class
+- Include a strategy name.
+- Include a difficulty name.
+- Define a chooseMove method that receives only the legal move list.
+- The strategy must not receive permission to modify the Game, Board, Player, Team, or Piece objects.
+- Include a validation method that verifies the selected move came from the supplied legal move list.
+- Reject an empty legal move list.
+
+3. RandomEasyStrategy class
+- Extend AiStrategy.
+- Choose one move using dart:math Random.
+- Allow a Random object to be injected through the constructor so automated tests can use a fixed seed.
+- Reject an empty legal move list.
+- Do not create new moves.
+- Do not add, remove, or reorder moves.
+- Do not modify game state.
+
+4. Testing requirements
+Create unit tests that verify:
+- the strategy reports the correct name and difficulty
+- the only legal move is selected when only one exists
+- every selected move belongs to the supplied legal list
+- both normal moves and X-stick special captures are supported
+- the legal move list is not changed
+- repeated choices can produce more than one result
+- empty legal move lists cause a StateError
+- deterministic tests can use a seeded Random object
+
+Constraints:
+- Use Dart null safety.
+- Keep AI code under lib/ai.
+- Keep tests under test/ai.
+- Do not place AI logic inside Flutter widgets.
+- Do not allow the AI to directly move pieces or change game state.
+- The game engine remains the only part of the program allowed to apply moves.
+
+Output:
+Provide complete copy-and-paste code for:
+- lib/ai/game_move.dart
+- lib/ai/ai_strategy.dart
+- lib/ai/random_easy_strategy.dart
+- test/ai/random_easy_strategy_test.dart

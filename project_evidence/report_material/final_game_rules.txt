@@ -1,0 +1,40 @@
+Players:
+4
+
+Teams:
+Team 1 = Player 1 and Player 3
+Team 2 = Player 2 and Player 4
+
+Turn Order:
+Player 1, Player 2, Player 3, Player 4, then repeat
+
+Board:
+29 spaces
+
+Pieces:
+Use the number of pieces already required by the official Game B assignment.
+
+Throw Rules:
+Each bright side counts as 1.
+Each dark side counts as 0.
+Four dark sides equal a move value of 5.
+Four bright sides equal a move value of 4 and grant an extra throw.
+
+Movement:
+A piece must move the exact value of the throw.
+
+Capturing:
+Only opposing-team pieces may be captured.
+Captured pieces return to the starting space.
+
+Stacking:
+Stacking must follow the official Game B rule already used in the project.
+
+Winning:
+A team wins when all required pieces belonging to both players on that team finish.
+
+No Legal Move:
+The turn advances according to the existing engine rules.
+
+Automated Game Limit:
+A game stops after 500 turns and is recorded as a timeout if neither team wins.

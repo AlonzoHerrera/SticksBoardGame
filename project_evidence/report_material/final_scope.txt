@@ -1,0 +1,11 @@
+Project Title:
+Game B AI-Rena: Flutter Strategy Board Game with Computer Opponents
+
+Project Type:
+Development Project
+
+Core Goal:
+The goal of this project is to expand the existing Flutter Game B application with Random, Greedy, and Heuristic computer opponents and use an LLM-controlled player to play against each difficulty so their behavior and performance can be compared using recorded game statistics.
+
+Scope Changes:
+The project will use three built-in difficulty levels: Random, Greedy, and Heuristic. Minimax has been removed to keep the project feasible. The LLM player will serve as the common test opponent and will play against all three difficulty levels to generate comparison data.
